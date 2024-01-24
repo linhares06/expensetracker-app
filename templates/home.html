@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+    
+    <h1 class="display-4">Home</h1>
+    <p class="lead">
+        {% if not expenses %}
+            No Expenses yet. <br/>
+            Please add a new Category and new Expenses.
+        
+        {% else %}
+            <h2>Expenses</h2>
+            <ul>
+                {% for expense in expenses %}
+                    <li>Description: {{ expense.description }} - Amount: {{ expense.amount }}</li>
+                {% endfor %}
+            </ul>
+            Total: {{ total }}
+            <br/>
+        {% endif %}
+        {% if expense_by_category_chart %}
+            <img src="data:image/png;base64, {{ expense_by_category_chart }}" alt="Expense Distribution">
+            
+        {% endif %}
+    </p>
+  
+{% endblock %}

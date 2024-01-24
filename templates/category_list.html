@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% include("currency_mask.html") %}
+
+{% block title %}Category{% endblock title %}
+
+{% block content %}
+        
+    <h1 class="display-4">Categories</h1>
+    <p class="lead">
+        {% if not categories %}
+            No Categories yet. <br/>
+            Please add a new Category.
+        
+        {% else %}
+            <ul class="list-group">
+                {% for category in categories %}
+                    <li class="list-group-item">Name: {{ category.name }} - Budget: {{ category.budget }}
+                        <button id="deleteButton" class="btn btn-danger" style="float: right;" onclick="confirmDelete('{{ category.id }}')">Delete</button>
+                        <a href="{{ url_for('tracker.edit_category', category_id=category.id) }}">
+                            <button id="editButton" class="btn btn-primary" style="float: right;">Edit</button>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </p>
+    <button type="button" class="btn btn-primary">
+        <a class="nav-link" href="{{ url_for('tracker.add_category') }}">Add Category</a>
+    </button>
+    <br/>
+
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <script>
+        function confirmDelete(categoryId) {
+            var confirmDelete = confirm("Are you sure you want to delete this category?");
+            if (confirmDelete) {
+                // If confirmed, redirect to the delete route with the category ID
+                window.location.href = "/delete_category/" + categoryId;
+            }
+        }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+<!-- Include Inputmask library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+<!-- Apply currency mask to the form field -->
+<script>
+  $(document).ready(function() {
+    $('#amount, #budget').inputmask('currency', 
+      { 
+        alias: 'numeric',
+        placeholder: '0',
+        numericInput: true,
+        radixPoint: '.', 
+        groupSeparator: '',
+        autoGroup: true
+    });
+  });
+</script>

@@ -1,0 +1,39 @@
+html, body {
+    height: 100%;
+  }
+
+  .content {
+    min-height: 100%;
+    padding-bottom: 60px; 
+  }
+
+  footer {
+    /*position: fixed;*/
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; 
+    background-color: #f8f9fa;
+    text-align: center;
+    /*line-height: 60px;*/
+  }
+
+  .form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .logo {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .navbar-nav.ml-auto {
+    margin-left: auto;
+  }
+
+  .no-underline {
+    text-decoration: none;
+  }
