@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 from pydantic import BaseModel, TypeAdapter, Field
 from bson import ObjectId
+from typing import Optional
 
 from database import Database
 
@@ -23,7 +24,7 @@ class RegisterUser(BaseModel):
 class User(UserMixin, BaseModel):
     id: str = Field(alias='_id')
     username: str
-    password: str
+    password: Optional[str]
 
     @staticmethod
     def get_user(username: str = None, user_id: str = None) -> dict:

@@ -34,7 +34,9 @@ def login():
         user = User.get_user(username=username)
         
         if user and bcrypt.check_password_hash(user.password, password):
+            user.password = None
             login_user(user)
+            breakpoint()
             return redirect(url_for('tracker.home'))
         else:
             flash('Invalid username and/or password.', 'danger')
@@ -67,10 +69,9 @@ def register():
 
             register_user = RegisterUser(username=username, password=password)
 
-            #TODO: change return to user obj?
             user_id = register_user.save()
             
-            user = User(_id=user_id, username=username, password=password)
+            user = User(_id=user_id, username=username, password=None)
             
             login_user(user)
             flash('You registered and are now logged in. Welcome!', 'success')
